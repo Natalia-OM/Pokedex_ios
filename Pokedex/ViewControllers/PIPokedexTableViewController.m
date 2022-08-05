@@ -9,6 +9,7 @@
 
 #import "PIPokeData.h"
 #import "PIPokemon.h"
+#import "PIPokemonAutoLayoutTableViewCell.h"
 
 @implementation PIPokedexTableViewController
 
@@ -18,6 +19,7 @@
     if (self) {
         _pokedex = pokedex();
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"kCellId"];
+        [self.tableView registerClass:[PIPokemonAutoLayoutTableViewCell class] forCellReuseIdentifier:@"PokemonCell"];
     }
     return self;
 }
@@ -37,9 +39,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PIPokemon *pokemon = self.pokedex[indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kCellId" forIndexPath:indexPath];
-    cell.textLabel.text = pokemon.name;
-    return cell;
+    PIPokemonAutoLayoutTableViewCell *pokemonCell = (PIPokemonAutoLayoutTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"PokemonCell" forIndexPath:indexPath];
+    [pokemonCell.pokemonView updateWithPokemon:pokemon];
+    return pokemonCell;
 }
 
 @end
