@@ -19,9 +19,9 @@
     return self;
 }
 
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"%@ : %tu", self.name, self.value];
+- (NSString *)description{
+    NSString *descrip = [NSString stringWithFormat:@"%@ : %tu", self.name, self.value];
+    return descrip;
 }
 
 @end
