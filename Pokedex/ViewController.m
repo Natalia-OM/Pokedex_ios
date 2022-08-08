@@ -7,6 +7,12 @@
 
 #import "ViewController.h"
 
+#import "PIPokemon.h"
+#import "PIPokeData.h"
+#import "PIPokemonAutoLayoutView.h"
+#import "PIPokemonManualLayoutView.h"
+#import "PIPokemonXibTableViewCell.h"
+#import "UIView+Nib.h"
 
 @interface ViewController ()
 
@@ -40,6 +46,5 @@
     
     self.view.backgroundColor = UIColor.systemBackgroundColor;
 }
-
 
 @end
