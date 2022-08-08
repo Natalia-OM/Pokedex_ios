@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     // add print statement to see the order view lifecycle events being called
-    NSLog(@"***** viewWillAppear is called");
+    NSLog(@"***** viewDidLoad is called");
 
     NSDictionary *pokemonData = [pokeData() firstObject];
     PIPokemon *pokemon = [[PIPokemon alloc] initWithDictionary:pokemonData];
@@ -46,43 +46,101 @@
     CGSize manualSize = [self.manualView sizeThatFits:CGSizeMake(self.view.frame.size.width, CGFLOAT_MAX)];
     self.manualView.frame = CGRectMake(self.view.frame.origin.x, 320, self.view.frame.size.width, manualSize.height);
     
+    
     [self.view addSubview:cell];
     [self.view addSubview:self.autoLayoutCell];
     [self.view addSubview:self.manualView];
     
+    // Some layout things I have questions about
+    [self setNavigationBarTitle];
+    self.pikachuCount = 3;
+    [self createButton];
+    [self createPikachuCountLabel];
+    
+}
+
+// overriding the view life cycles to show when things are called
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"***** viewWillAppear is called");
+    self.view.hidden = YES;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSLog(@"***** viewDidAppear is called");
+    [self showViewAfterTwoSeconds];
+    [self animateLastViewToANewPlace];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    NSLog(@"***** viewWillDisappear is called");
+}
+
+-(void)viewWillLayoutSubviews
+{
+    NSLog(@"***** viewWillLayoutSubviews is called");
+}
+
+
+-(void)viewDidLayoutSubviews
+{
+    NSLog(@"***** viewDidLayoutSubviews");;
 }
 
 - (void)createPikachuCountLabel
 {
+    // Create a label
+    // set the font to 15
+    // set the frame
+    // add the label
+    // call the update function
     _pikachuCountLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _pikachuCountLabel.font = [UIFont systemFontOfSize:15];
-    _pikachuCountLabel.frame = CGRectMake(25.0, 440.0, 160.0, 40.0);
+    _pikachuCountLabel.frame = CGRectMake(25.0, 144.0, 160.0, 40.0);
     [self.view addSubview:_pikachuCountLabel];
     [self updatePikachuCountLabel];
 }
 
 - (void)updatePikachuCountLabel
 {
-    self.pikachuCountLabel.text = [NSString stringWithFormat:@"%ld Pikachus", self.pikachuCount];
+    self.pikachuCountLabel.text = [NSString stringWithFormat:@"%ld pikachus on screen", self.pikachuCount];
 }
 
 - (void)createButton
 {
+    // Make a button called hideButton
+    // add target/selector (buttonTapped) method, and for touchupinside
+    // set title of button
+    // set background to lightgray
+    // set frame
+    // set corner radius to round edge
+    // add to subview
     self.hideButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
     [self.hideButton addTarget:self
-               action:@selector(buttonTapped)
-     forControlEvents:UIControlEventTouchUpInside];
+                        action:@selector(buttonTapped)
+              forControlEvents:UIControlEventTouchUpInside];
     [self.hideButton setTitle:@"hide last Pikachu" forState:UIControlStateNormal];
-    [self.hideButton setBackgroundColor:UIColor.lightGrayColor];
+    [self.hideButton setBackgroundColor:[UIColor lightGrayColor]];
     self.hideButton.frame = CGRectMake(8.0, 400.0, 160.0, 40.0);
-    self.hideButton.layer.cornerRadius = 8.0;
+    self.hideButton.layer.cornerRadius=8.0;
     [self.view addSubview:self.hideButton];
 }
+
+
 - (void)buttonTapped
 {
+    // flip the bool hidden
+    // Change the string var title depending on the bool
+    // set title
+    // change self.pikachu count
+    // updatepikachucountlabel
     self.manualView.hidden = !self.manualView.hidden;
-    NSString *title = self.manualView.hidden ?  @"show last Pikachu" : @"hide last Pikachu";
+    NSString *title = self.manualView.hidden ? @"show last Pikachu" : @"hide last Pikachu";
     [self.hideButton setTitle:title forState:UIControlStateNormal];
     // in real application, model changes are from network
     self.pikachuCount = self.manualView.hidden ? 2 : 3;
@@ -100,7 +158,7 @@
 
 - (void)setNavigationBarTitle
 {
-    self.title = @"pokedox main page";
+    self.title = @"Natalia's Pokedex";
 }
 
 - (void)animateLastViewToANewPlace

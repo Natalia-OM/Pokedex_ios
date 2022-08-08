@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class PIPokemonType;
+//@class PIPokemonType;
 
 NS_ASSUME_NONNULL_BEGIN
 
