@@ -97,13 +97,13 @@ static const CGSize kPokemonTypeImageSize = { .width = 14.0, .height = 14.0 };
     // Constraints for the cellHorizontalStackView to lay itself out
     [NSLayoutConstraint activateConstraints:@[
         // Avoid image taking full space with constraints
-        [self.pokemonImageView.widthAnchor constraintEqualToConstant: 56],
-        [self.pokemonImageView.heightAnchor constraintEqualToConstant:56],
+        [self.pokemonImageView.widthAnchor constraintEqualToConstant:kPokemonImageSize.width],
+        [self.pokemonImageView.heightAnchor constraintEqualToConstant:kPokemonImageSize.height],
         //Set up type image height/width constraints as well
-        [self.firstTypeImageView.widthAnchor constraintEqualToConstant:14],
-        [self.firstTypeImageView.heightAnchor constraintEqualToConstant:14],
-        [self.secondTypeImageView.widthAnchor constraintEqualToConstant:14],
-        [self.secondTypeImageView.heightAnchor constraintEqualToConstant:14],
+        [self.firstTypeImageView.widthAnchor constraintEqualToConstant:kPokemonTypeImageSize.width],
+        [self.firstTypeImageView.heightAnchor constraintEqualToConstant:kPokemonTypeImageSize.height],
+        [self.secondTypeImageView.widthAnchor constraintEqualToConstant:kPokemonTypeImageSize.width],
+        [self.secondTypeImageView.heightAnchor constraintEqualToConstant:kPokemonTypeImageSize.height],
         // Set up the buffer around the screen to be 16 pts
         [self.cellHorizontalStackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:16],
         [self.cellHorizontalStackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:16],
