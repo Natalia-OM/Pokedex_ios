@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 // as a prefix, in this case, PIPokemonViewController, and use arguments to describe the event
 // occurring in the object
 - (void)PIPokemonViewControllerDidRequestDismissal:(PIPokemonViewController *)viewController;
+- (void)PIPokemonViewController:(PIPokemonViewController *)viewController didPinPokemon:(PIPokemon *)pokemon;
 @end
 
 

@@ -1090,6 +1090,7 @@
 		A461D3D626D950BE0008F8B4 /* grapploct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A461CFB126D950BC0008F8B4 /* grapploct.mp3 */; };
 		A461D3D726D950BE0008F8B4 /* ditto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A461CFB226D950BC0008F8B4 /* ditto.mp3 */; };
 		A461D3DC26D958D00008F8B4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A461D3DB26D958D00008F8B4 /* AVFoundation.framework */; };
+		B223824128A477B00005D5E0 /* PIPokemonDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B223824028A477B00005D5E0 /* PIPokemonDataManager.m */; };
 		F2699F2126D6CB60004496C8 /* pokemon_870.json in Resources */ = {isa = PBXBuildFile; fileRef = F2699B9E26D6CB5C004496C8 /* pokemon_870.json */; };
 		F2699F2226D6CB60004496C8 /* pokemon_523.json in Resources */ = {isa = PBXBuildFile; fileRef = F2699B9F26D6CB5C004496C8 /* pokemon_523.json */; };
 		F2699F2326D6CB60004496C8 /* pokemon_173.json in Resources */ = {isa = PBXBuildFile; fileRef = F2699BA026D6CB5C004496C8 /* pokemon_173.json */; };
@@ -3094,6 +3095,8 @@
 		A461CFB226D950BC0008F8B4 /* ditto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ditto.mp3; sourceTree = "<group>"; };
 		A461D3D926D958910008F8B4 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		A461D3DB26D958D00008F8B4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B223823F28A477B00005D5E0 /* PIPokemonDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PIPokemonDataManager.h; path = Pokedex/PIPokemonDataManager.h; sourceTree = SOURCE_ROOT; };
+		B223824028A477B00005D5E0 /* PIPokemonDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PIPokemonDataManager.m; path = Pokedex/PIPokemonDataManager.m; sourceTree = SOURCE_ROOT; };
 		F2699B9E26D6CB5C004496C8 /* pokemon_870.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pokemon_870.json; sourceTree = "<group>"; };
 		F2699B9F26D6CB5C004496C8 /* pokemon_523.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pokemon_523.json; sourceTree = "<group>"; };
 		F2699BA026D6CB5C004496C8 /* pokemon_173.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pokemon_173.json; sourceTree = "<group>"; };
@@ -4009,6 +4012,8 @@
 		4C186F7A26DD9F2200692220 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B223823F28A477B00005D5E0 /* PIPokemonDataManager.h */,
+				B223824028A477B00005D5E0 /* PIPokemonDataManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -8151,6 +8156,7 @@
 				9C16FD7E26B4AFC000C681F4 /* PIPokemonAutoLayoutView.m in Sources */,
 				A461CB8C26D950A70008F8B4 /* PIPokemonAutoLayoutTableViewCell.m in Sources */,
 				4C220EE726D999DD00F11FBE /* PIPokemonViewController.m in Sources */,
+				B223824128A477B00005D5E0 /* PIPokemonDataManager.m in Sources */,
 				9C16FD8726B506C700C681F4 /* UIImageView+URL.m in Sources */,
 				9C16FD7326B485D200C681F4 /* UIColor+Pokemon.m in Sources */,
 				9C16FD6F26B46B2200C681F4 /* PIPokemonStat.m in Sources */,

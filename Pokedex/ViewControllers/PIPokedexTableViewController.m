@@ -13,10 +13,10 @@
 #import "PIPokemon.h"
 #import "PIPokemonAutoLayoutTableViewCell.h"
 #import "PIPokemonViewController.h"
+#import "PIPokemonDataManager.h"
 
-// TODO: (Delegate) Specify delegate(s) this view controller needs to conform
 
-@interface PIPokedexTableViewController()
+@interface PIPokedexTableViewController() <PIPokemonViewControllerDelegate>
 
 @end
 
@@ -26,8 +26,7 @@
 {
     self = [super init];
     if (self) {
-        // TODO: (Singleton) Change below to get the pokedex data from the data manager class.
-        _pokedex = pokedex();
+        _pokedex = [PIPokemonDataManager.sharedManager fetchPokedexData];
         [self.tableView registerClass:[PIPokemonAutoLayoutTableViewCell class] forCellReuseIdentifier:@"PokemonCell"];
         
         UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
@@ -57,12 +56,10 @@
     return pokemonCell;
 }
 
-// TODO: use didSelectRowAtIndexPath here to handle taps on a row - DONE ? 
-    // TODO: (Presentation) Present `PIPokemonViewController` from here
-    // TODO: (Delegate) Assign delegate of `PIPokemonViewController` to this VC
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // "Tells the delegate a row is selected, according to documentation
+    // "Tells the delegate a row is selected", according to documentation
     PIPokemon *pokemon = self.pokedex[indexPath.row];
     PIPokemonViewController *pokemonViewController = [[PIPokemonViewController alloc] initWithPokemon:pokemon];
     pokemonViewController.delegate = self;
@@ -99,6 +96,19 @@
 
 #pragma mark - PIPokemonViewControllerDelegate
 
-// TODO: (Delegate) Add delegate conformation methods for handling events from `PIPokemonViewController`.
+
+- (void)PIPokemonViewControllerDidRequestDismissal:(PIPokemonViewController *)viewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)PIPokemonViewController:(PIPokemonViewController *)viewController didPinPokemon:(PIPokemon *)pokemon
+{
+    // When someone hits pin, dismiss the view, and then reload the tableview
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.pokedex = [PIPokemonDataManager.sharedManager fetchPokedexData];
+        [self.tableView reloadData];
+        }];
+}
 
 @end

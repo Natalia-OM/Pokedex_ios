@@ -11,6 +11,7 @@
 #import "PIPokemon+Additions.h"
 #import "PIPokemonType+TypeIcon.h"
 #import "UIImageView+URL.h"
+#import "PIPokemonDataManager.h"
 
 static CGFloat kButtonHeight = 50.0;
 
@@ -93,6 +94,7 @@ static CGFloat kButtonHeight = 50.0;
     self.typeTitleLabel.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
     self.typeTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
+
     PIPokemonType *type1 = pokemon.types.firstObject;
     self.firstTypeImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.firstTypeImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -146,6 +148,7 @@ static CGFloat kButtonHeight = 50.0;
     [self.pinItButton addTarget:self action:@selector(didTapPinItButton) forControlEvents:UIControlEventTouchUpInside];
     self.pinItButton.translatesAutoresizingMaskIntoConstraints = NO;
 
+    // Calls the close button to close the pop-up modal view
     self.closeButton = [[UIButton alloc] initWithFrame:CGRectZero];
     self.closeButton.layer.cornerRadius = kButtonHeight / 2;
     self.closeButton.backgroundColor = UIColor.lightGrayColor;
@@ -237,12 +240,17 @@ static CGFloat kButtonHeight = 50.0;
 
 - (void)didTapPinItButton
 {
-    // TODO: (Singleton) Call the data manager to update the property of the pokemon, trigger reload of the UI.
+    // Telling the data manager that we tapped the pokemon
+    PIPokemon *pokemonTapped = self.pokemon;
+    [PIPokemonDataManager.sharedManager pinPokemon:pokemonTapped];
+
+    // Tell the delegate that we did it ? Why - ask
+    [self.delegate PIPokemonViewController:self didPinPokemon:pokemonTapped];
 }
 
 - (void)didTapCloseButton
 {
-    // TODO: (Delegate) Delegate dismissal of the view controller to the presenting.
+    [self.delegate PIPokemonViewControllerDidRequestDismissal:self];
 }
 
 @end
