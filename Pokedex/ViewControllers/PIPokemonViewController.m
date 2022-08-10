@@ -35,6 +35,7 @@ static CGFloat kButtonHeight = 50.0;
 @property (nonatomic, strong, readwrite) UIStackView *buttonStackView;
 @property (nonatomic, strong, readwrite) UIButton *closeButton;
 @property (nonatomic, strong, readwrite) UIButton *pinItButton;
+@property (nonatomic, strong, readwrite) UIButton *dismissButton;
 
 @end
 

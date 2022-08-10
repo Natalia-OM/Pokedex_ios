@@ -11,10 +11,19 @@
 @class PIPokemonViewController;
 
 NS_ASSUME_NONNULL_BEGIN
+// Create protocol for delegate
+@protocol PIPokemonViewControllerDelegate
+// Define delegate methods that the delegate will need to implement
+// Solutions comment: Naming convention is to have name of object requesting delegation
+// as a prefix, in this case, PIPokemonViewController, and use arguments to describe the event
+// occurring in the object
+- (void)PIPokemonViewControllerDidRequestDismissal:(PIPokemonViewController *)viewController;
+@end
+
 
 @interface PIPokemonViewController : UIViewController
 
-// TODO: (Delegate) Add delegate property
+@property (nonatomic, readwrite, weak) id <PIPokemonViewControllerDelegate> delegate;
 
 - (instancetype)initWithPokemon:(PIPokemon *)pokemon;
 
