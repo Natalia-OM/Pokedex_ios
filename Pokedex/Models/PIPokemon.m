@@ -62,12 +62,15 @@
 - (void)setIsPinned:(BOOL)isPinned
 {
     // write to standard default
+    NSString *userDefaultKey = [NSString stringWithFormat:@"kpinnedPokemonWith%lu", (unsigned long)self.number];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:userDefaultKey];
 }
 
 - (BOOL)isPinned
 {
     // access standard default for value
-    return NO;
+    NSString *userDefaultKey = [NSString stringWithFormat:@"kpinnedPokemonWith%lu", (unsigned long)self.number];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:userDefaultKey];
 }
 
 @end
